@@ -1,5 +1,17 @@
 import React from 'react';
-// import axios from 'axios';
+import axios from 'axios';
+
+axios.interceptors.request.use(
+    function(config) {
+        config.headers.authorization = localStorage.getItem('jwt');
+        return config;
+    },
+    function(error) {
+        return Promise.reject(error)
+    }
+)
+
+
 
 export default function(Component) {
     return class Authenticated extends React.Component {
