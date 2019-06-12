@@ -9,10 +9,10 @@ module.exports = (req, res, next) => {
     jwt.verify(token, secrets.jwtSecret, (err, decodeToken) => {
       if(err) {
         //invalid token
-        res.status(401).json({message: 'Invalid Credentials'});
+        res.status(401).json({message: 'You shall not pass!'});
       } else {
         //valid token
-        req.user = {roles: decodeToken.roles, username: decodeToken.username} //
+        req.user = {departments: decodeToken.departments, username: decodeToken.username} //
         next();
       }
     })
