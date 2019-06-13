@@ -23,7 +23,7 @@ class Users extends React.Component {
 
     componentDidMount() {
         const endpoint = 'http://localhost:5000/api/users';
-        const token = localStorage.getItem('jwt')
+        // const token = localStorage.getItem('jwt')
         // const requestConfig = {
         //     headers: {
         //         authorization: token
