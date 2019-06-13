@@ -16,7 +16,8 @@ class Register extends React.Component {
                     <div>
                         <label htmlFor="username" />
                         <input
-                            id="username"
+                            name="username"
+                            placeholder="username"
                             onChange={this.handleChange}
                             value={this.state.username}
                             type="text"
@@ -25,7 +26,8 @@ class Register extends React.Component {
                     <div>
                         <label htmlFor="password" />
                         <input
-                            id="password"
+                            name="password"
+                            placeholder="password"
                             onChange={this.handleChange}
                             value={this.state.password}
                             type="password"
@@ -34,14 +36,15 @@ class Register extends React.Component {
                     <div>
                         <label htmlFor="department" />
                         <input
-                            id="department"
+                            name="department"
+                            placeholder="department"
                             onChange={this.handleChange}
                             value={this.state.department}
                             type="text"
                         />
                     </div>
                     <div>
-                        <button type="submit">Login</button>
+                        <button type="submit">Signup</button>
                     </div>
 
                 </form>
@@ -50,9 +53,9 @@ class Register extends React.Component {
     }
 
     handleChange = event => {
-        const {id, value} = event.target;
+        const { name, value} = event.target;
 
-        this.setState({ [id]: value });
+        this.setState({ [name]: value });
     };
 
     submitForm = event => {
@@ -63,6 +66,7 @@ class Register extends React.Component {
             .post(endpoint, this.state)
             .then(res => {
                 localStorage.setItem('jwt', res.data.token)
+                console.log(res.data)
                 this.props.history.push('/users')
             })
             .catch(err => {

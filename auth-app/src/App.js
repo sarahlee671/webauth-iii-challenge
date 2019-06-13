@@ -15,15 +15,17 @@ function App(props) {
   return (
     <div className="App">
       <header>
+        <NavLink to="/register">Register</NavLink>
         <NavLink to="/login">Login</NavLink>
         <NavLink to="/users">Users</NavLink>
-        <NavLink to="/register">Register</NavLink>
+        
         <button type="button" onClick={logout}>Logout</button>
       </header>
       <div>
+        <Route path ="/register" component={Register} />
         <Route path = "/login" component={Login} />
         <Route path ="/users" component={Users} />
-        <Route path ="/register" component={Register} />
+        
       </div>
     </div>
   );

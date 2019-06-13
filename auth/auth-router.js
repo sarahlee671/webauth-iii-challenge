@@ -10,12 +10,14 @@ const secrets = require('../config/secrets.js')
 
 router.post('/register', (req, res) => {
     let user = req.body;
-    const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
+    const hash = bcrypt.hashSync(user.password, 10); 
     user.password = hash;
 
     Users.add(user)
         .then(saved => {
-            res.status(201).json(saved);
+            const token = generateToken(user)
+            res.status(201).json({token});
+                
         })
         .catch(error => {
             res.status(500).json(error);
@@ -47,7 +49,7 @@ function generateToken(user) {
     const payload = {
         subject: user.id, 
         username: user.username,
-        departments: ['finance']
+        departments: user.department
     };
 
     const options = {

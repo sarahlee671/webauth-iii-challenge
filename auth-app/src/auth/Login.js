@@ -3,8 +3,8 @@ import axios from 'axios';
 
 class Login extends React.Component {
     state = {
-        username: 'sarah',
-        password: 'password'
+        username: "",
+        password: ""
     }
 
     render() {
@@ -53,6 +53,7 @@ class Login extends React.Component {
             .post(endpoint, this.state)
             .then(res => {
                 localStorage.setItem('jwt', res.data.token)
+                console.log(res.data)
                 this.props.history.push('/users')
             })
             .catch(err => {
