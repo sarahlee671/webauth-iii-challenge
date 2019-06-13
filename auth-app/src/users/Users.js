@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import User from './User';
 import requiresAuth from '../auth/requiresAuth';
+import styled from 'styled-components';
 
 
 class Users extends React.Component {
@@ -11,9 +12,9 @@ class Users extends React.Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 <h2>Users</h2>
-                <div>
+                <CardList>
                     {this.state.users.map(user => {
                         return (
                             <div className="users-container"> 
@@ -25,12 +26,9 @@ class Users extends React.Component {
                                 />
                             </div>
                         );
-                    
-                    
-                      
                     })}
-                </div>
-            </div>
+                </CardList>
+            </Container>
         )
     }
 
@@ -52,3 +50,20 @@ class Users extends React.Component {
 }
 
 export default requiresAuth(Users);
+
+const Container = styled.div`
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+
+
+`
+
+const CardList = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    text-align: center; 
+`

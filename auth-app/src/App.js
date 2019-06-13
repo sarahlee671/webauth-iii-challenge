@@ -1,8 +1,9 @@
 import React from 'react';
-import {Route, NavLink, withRouter} from 'react-router-dom';
+import {Route, Link, withRouter} from 'react-router-dom';
 import Login from './auth/Login';
 import Users from './users/Users';
 import Register from './auth/Register';
+import styled from 'styled-components';
 
 import './App.css';
 
@@ -14,13 +15,13 @@ function App(props) {
 
   return (
     <div className="App">
-      <header>
-        <NavLink to="/register">Register</NavLink>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/users">Users</NavLink>
+      <NavHeader>
+        <Link className="nav-link" to="/register">Signup</Link>
+        <Link className="nav-link" to="/login">Login</Link>
+        <Link className="nav-link" to="/users">Users</Link>
         
-        <button type="button" onClick={logout}>Logout</button>
-      </header>
+        <button className="nav-button" type="button" onClick={logout}>Logout</button>
+      </NavHeader>
       <div>
         <Route path ="/register" component={Register} />
         <Route path = "/login" component={Login} />
@@ -32,3 +33,19 @@ function App(props) {
 }
 
 export default withRouter(App);
+
+const NavHeader = styled.div`
+  max-width: 1010px;
+  padding: 26px 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  Link{
+    font-size: 20px;
+  }
+  
+ 
+  
+`
